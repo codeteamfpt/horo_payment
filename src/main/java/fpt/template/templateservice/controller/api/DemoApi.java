@@ -4,6 +4,7 @@ package fpt.template.templateservice.controller.api;
 import fpt.template.templateservice.dto.request.DemoRequestDTO;
 import fpt.template.templateservice.dto.response.DemoResponseDTO;
 import org.springframework.http.MediaType;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -15,6 +16,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
+@Controller
 @RequestMapping(value = "demo", name = "tên request")
 @Tag(name = "tên request", description = "định nghĩa request")
 public interface DemoApi {

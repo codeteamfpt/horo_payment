@@ -9,6 +9,6 @@ import org.springframework.stereotype.Service;
 public class DemoServiceImpl implements DemoService {
     @Override
     public DemoResponseDTO demoMethod() {
-        return null;
+        return DemoResponseDTO.builder().demo("Hello World").build();
     }
 }

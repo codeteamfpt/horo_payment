@@ -5,7 +5,9 @@ import fpt.template.templateservice.dto.request.DemoRequestDTO;
 import fpt.template.templateservice.dto.response.DemoResponseDTO;
 import fpt.template.templateservice.service.iclass.DemoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RestController;
 
+@RestController
 public class DemoApiImpl implements DemoApi {
 
     @Autowired
