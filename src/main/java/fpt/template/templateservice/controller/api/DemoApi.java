@@ -34,7 +34,7 @@ public interface DemoApi {
             @Parameter(name = "requestId", in = ParameterIn.QUERY, required = true, description = "Mã giao dịch", example = "20052015203") String requestId);
 
     @PostMapping(value = "/post", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-    @Operation(summary = "tổng quan tác dụng api")
+    @Operation(summary = "tổng quan tác dụng api test 2")
     @ApiResponses(value = { @ApiResponse(responseCode = "200", description = "Success"),
             @ApiResponse(responseCode = "400", description = "Lỗi xác thực"),
             @ApiResponse(responseCode = "404", description = "Không tìm thấy") })
