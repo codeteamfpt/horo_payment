@@ -5,10 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Date;
 
 @Data
@@ -19,6 +16,7 @@ import java.util.Date;
 @Table(name = "payment_trans_detail")
 public class PaymentTransDetailEntity {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "payment_trans_detail_id")
     private Long PaymentTransDetailId;
     @Column(name = "trans_msisdn")
@@ -43,4 +41,6 @@ public class PaymentTransDetailEntity {
     private String transType;
     @Column(name = "order_id")
     private String orderId;
+    @Column(name = "vt_transaction_id")
+    private String vtTransactionId;
 }

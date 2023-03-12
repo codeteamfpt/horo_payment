@@ -17,11 +17,11 @@ public class GetResultTransRequest {
     @JsonProperty("cust_msisdn")
     String custMsisdn;
     @JsonProperty("error_code")
-    String error_code;
+    String errorCode;
     @JsonProperty("merchant_code")
     String merchantCode;
     @JsonProperty("order_id")
-    Integer orderId;
+    String orderId;
     @JsonProperty("payment_status")
     Long paymentStatus;
     @JsonProperty("trans_amount")

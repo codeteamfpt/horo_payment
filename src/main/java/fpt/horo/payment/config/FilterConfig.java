@@ -42,7 +42,7 @@ public class FilterConfig extends OncePerRequestFilter {
         ClientUrlConfigEntity clientUrlConfig =  clientUrlConfigRepository.findFirstByClientIdAndClientUrl(clientId, command);
         if (clientUrlConfig == null) {
             httpServletResponse.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-            log.info("ClientUrl Invalid !!");
+            log.info("ClientUrl Invalid !! {} ", command);
             return;
         }
         ClientConfigEntity clientConfigCheck = clientConfigRepository.findByClientIdAndClientSecret(clientId, clientSecret);

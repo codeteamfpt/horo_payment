@@ -1,10 +1,14 @@
 package fpt.horo.payment.controller.impl;
 
+import fpt.horo.payment.constant.ResponseStatusEnum;
 import fpt.horo.payment.controller.api.PaymentGatewayApi;
+import fpt.horo.payment.dto.GeneralResponse;
 import fpt.horo.payment.dto.request.gateway_request.ConfirmTransRequest;
 import fpt.horo.payment.dto.request.gateway_request.GetResultTransRequest;
+import fpt.horo.payment.dto.response.CreateTransResponse;
 import fpt.horo.payment.dto.response.gateway_response.ConfirmTransResponse;
 import fpt.horo.payment.dto.response.gateway_response.GetResultTransResponse;
+import fpt.horo.payment.exception.HandleException;
 import fpt.horo.payment.service.iclass.PaymentGatewayService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

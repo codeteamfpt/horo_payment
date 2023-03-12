@@ -12,8 +12,9 @@ import java.util.Date;
 @Data
 @Builder
 public class CreateTransRequest {
+    private String orderId;
     private String transAccountId;
     private Double transAmount;
     private String transType;
-    private Date crateDate;
+    private Date creatDate;
 }

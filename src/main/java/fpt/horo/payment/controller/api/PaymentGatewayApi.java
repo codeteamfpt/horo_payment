@@ -15,11 +15,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping(value = "${app.application-context}")
 @Tag(name = "payment gateways vds", description = "định nghĩa request")
 public interface PaymentGatewayApi {
-    @PostMapping(value = "/verify-trans", produces = MediaType.APPLICATION_FORM_URLENCODED_VALUE, consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+    @PostMapping(value = "/verify-trans", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
     ConfirmTransResponse verifyTrans(
             @RequestBody ConfirmTransRequest request);
 
-        @PostMapping(value = "/get-result-trans", produces = MediaType.APPLICATION_FORM_URLENCODED_VALUE, consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+        @PostMapping(value = "/get-result-trans", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
     GetResultTransResponse getResultTrans(
             @RequestBody GetResultTransRequest request);
 }

@@ -69,7 +69,7 @@ public final class Constants {
 
         }
     }
-
+    public static final String REQUEST_CREATE_TRANS = "CREATE_TRANS:REQUEST_ID";
     private Constants() {
 
     }
