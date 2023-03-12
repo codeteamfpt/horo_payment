@@ -1,5 +1,6 @@
 package fpt.horo.payment.service.impl;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import fpt.horo.payment.dto.request.gateway_request.ConfirmTransRequest;
 import fpt.horo.payment.dto.request.gateway_request.GetResultTransRequest;
 import fpt.horo.payment.dto.response.gateway_response.ConfirmTransResponse;
@@ -13,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
+import org.springframework.util.MultiValueMap;
 
 import java.util.Date;
 
@@ -25,6 +27,8 @@ public class PaymentGatewayServiceImpl implements PaymentGatewayService {
     private RedisTemplate<String, Object> redisTemplate;
     @Autowired
     private PaymentTransDetailRepository paymentTransDetailRepository;
+
+    private final ObjectMapper objectMapper = new ObjectMapper();
 
     @Value("${ctt.vds.access-code}")
     String accessCode;
@@ -46,12 +50,13 @@ public class PaymentGatewayServiceImpl implements PaymentGatewayService {
     }
 
     @Override
-    public ConfirmTransResponse confirmTrans(ConfirmTransRequest request) {
+    public ConfirmTransResponse confirmTrans(MultiValueMap<String, String> rawRequest) {
+        ConfirmTransRequest request = objectMapper.convertValue(rawRequest.toSingleValueMap(), ConfirmTransRequest.class);
         try {
             if (checkRequestConfirmNull(request)) {
                 return returnFailConfirm(request, "01");
             }
-            PaymentTransDetailEntity orderEntity = paymentTransDetailRepository.findByOrderId(request.getOrderId());
+            PaymentTransDetailEntity orderEntity = paymentTransDetailRepository.findByOrderIdAndStatus(request.getOrderId(), 0L);
             if (orderEntity == null) {
                 return returnFailConfirm(request, "01");
             }
@@ -80,7 +85,8 @@ public class PaymentGatewayServiceImpl implements PaymentGatewayService {
     }
 
     @Override
-    public GetResultTransResponse getResultTrans(GetResultTransRequest request) {
+    public GetResultTransResponse getResultTrans(MultiValueMap<String, String> rawRequest) {
+        GetResultTransRequest request = objectMapper.convertValue(rawRequest.toSingleValueMap(), GetResultTransRequest.class);
         try {
             if(checkRequestGetResultNull(request)){
                 return setResultResponse(request, "01");

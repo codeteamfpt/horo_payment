@@ -8,4 +8,6 @@ import org.springframework.stereotype.Repository;
 public interface PaymentTransDetailRepository extends JpaRepository<PaymentTransDetailEntity, Long> {
     PaymentTransDetailEntity findByOrderId(String orderId);
 
+    PaymentTransDetailEntity findByOrderIdAndStatus(String orderId, Long status);
+
 }

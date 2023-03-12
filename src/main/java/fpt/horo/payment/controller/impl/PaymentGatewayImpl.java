@@ -12,6 +12,7 @@ import fpt.horo.payment.exception.HandleException;
 import fpt.horo.payment.service.iclass.PaymentGatewayService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -22,22 +23,36 @@ public class PaymentGatewayImpl implements PaymentGatewayApi {
     PaymentGatewayService paymentGatewayService;
 
     @Override
-    public ConfirmTransResponse verifyTrans(ConfirmTransRequest request) {
+    public ConfirmTransResponse verifyTrans(MultiValueMap<String, String> request) {
         try {
             return paymentGatewayService.confirmTrans(request);
         }catch (Exception e) {
             log.info("PaymentGatewayImpl verifyTrans Exception {}", e.getMessage(), e);
-            return ConfirmTransResponse.builder().errorCode("03").build();
+            return ConfirmTransResponse.builder()
+                    .errorCode("03")
+                    .checkSum("")
+                    .billCode("")
+                    .merchantCode("")
+                    .transAmount("")
+                    .orderId("")
+                    .build();
         }
     }
 
     @Override
-    public GetResultTransResponse getResultTrans(GetResultTransRequest request) {
+    public GetResultTransResponse getResultTrans(MultiValueMap<String, String> request) {
         try {
             return paymentGatewayService.getResultTrans(request);
         }catch (Exception e) {
             log.info("PaymentGatewayImpl verifyTrans Exception {}", e.getMessage(), e);
-            return GetResultTransResponse.builder().errorCode("03").build();
+            return GetResultTransResponse.builder()
+                    .errorCode("01")
+                    .merchantCode("")
+                    .orderId("")
+                    .returnUrl("")
+                    .returnBillCode("")
+                    .returnOtherIn("")
+                    .checkSum("").build();
         }
     }
 }
