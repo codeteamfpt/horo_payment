@@ -1,9 +1,9 @@
 package fpt.horo.payment.controller.api;
 
 import fpt.horo.payment.dto.request.gateway_request.ConfirmTransRequest;
-import fpt.horo.payment.dto.request.gateway_request.GetResultRequest;
+import fpt.horo.payment.dto.request.gateway_request.GetResultTransRequest;
 import fpt.horo.payment.dto.response.gateway_response.ConfirmTransResponse;
-import fpt.horo.payment.dto.response.gateway_response.GetResultResponse;
+import fpt.horo.payment.dto.response.gateway_response.GetResultTransResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
@@ -19,7 +19,7 @@ public interface PaymentGatewayApi {
     ConfirmTransResponse verifyTrans(
             @RequestBody ConfirmTransRequest request);
 
-    @PostMapping(value = "/get-result-trans", produces = MediaType.APPLICATION_FORM_URLENCODED_VALUE, consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
-    GetResultResponse getResultTrans(
-            @RequestBody GetResultRequest request);
+        @PostMapping(value = "/get-result-trans", produces = MediaType.APPLICATION_FORM_URLENCODED_VALUE, consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+    GetResultTransResponse getResultTrans(
+            @RequestBody GetResultTransRequest request);
 }

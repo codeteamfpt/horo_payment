@@ -13,6 +13,11 @@ public class GeneralResponse<T> {
         this.data = data;
     }
 
+    public GeneralResponse(T data, ResponseStatus status) {
+        this.data = data;
+        this.status = status;
+    }
+
     public String toString() {
         return Utils.gson.toJson(this);
     }

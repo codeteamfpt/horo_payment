@@ -11,23 +11,18 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class DemoApiImpl implements DemoApi {
 
-    @Autowired
-    DemoService demoService;
-
     @Override
     public DemoResponseDTO getDemo(String authentication, String msisdn, String requestId) {
-        return demoService.demoMethod();
+        return null;
     }
 
     @Override
-    public DemoResponseDTO postDemo(String authentication, DemoRequestDTO DemoRequestDTO) {
-        return demoService.demoMethod();
+    public DemoResponseDTO postDemo(String authentication, DemoRequestDTO demoRequestDTO) {
+        return null;
     }
 
     @Override
     public String homeAdmin(Model model) {
-        String hello = "hello All";
-        model.addAttribute("message", hello);
-            return "Index";
+        return null;
     }
 }

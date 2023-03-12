@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class GetResultRequest {
+public class GetResultTransRequest {
 
     @JsonProperty("billcode")
     String billcode;

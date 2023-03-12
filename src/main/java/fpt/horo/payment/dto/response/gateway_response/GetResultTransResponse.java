@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class GetResultResponse {
+public class GetResultTransResponse {
     @JsonProperty("error_code")
     String errorCode;
     @JsonProperty("merchant_code")

@@ -23,8 +23,10 @@ public class PaymentTransDetailEntity {
     private Long PaymentTransDetailId;
     @Column(name = "trans_msisdn")
     private String transMsisdn;
+    @Column(name = "trans_account_id")
+    private String transAccountId;
     @Column(name = "status")
-    private String status;
+    private Long status;
     @Column(name = "error_code")
     private String errorCode;
     @Column(name = "error_message")
