@@ -20,7 +20,7 @@ public class RedisConfig {
     private String password;
 
     @Bean
-    public RedisConnectionFactory redisConnectionFactory() {
+    public LettuceConnectionFactory redisConnectionFactory() {
         RedisStandaloneConfiguration redisStandaloneConfiguration = new RedisStandaloneConfiguration();
         redisStandaloneConfiguration.setHostName(hostname);
         redisStandaloneConfiguration.setPort(port);
