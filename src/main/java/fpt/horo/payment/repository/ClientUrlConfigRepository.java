@@ -9,6 +9,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ClientUrlConfigRepository extends JpaRepository<ClientUrlConfigEntity, Long> {
 
-    @Cacheable
+    @Cacheable("findFirstByClientIdAndClientUrl")
     ClientUrlConfigEntity findFirstByClientIdAndClientUrl(String clientId, String clientUrl);
 }

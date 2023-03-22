@@ -9,9 +9,9 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ClientConfigRepository extends JpaRepository<ClientConfigEntity, Long> {
 
-    @Cacheable
+    @Cacheable("findFirstByClientId")
     ClientConfigEntity findFirstByClientId(String clientId);
 
-    @Cacheable
+    @Cacheable("findByClientIdAndClientSecret")
     ClientConfigEntity findByClientIdAndClientSecret(String clientId, String clientSecret);
 }

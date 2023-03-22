@@ -19,8 +19,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.concurrent.TimeUnit;
 
-@Service
 @Slf4j
+@Service("PaymentDetailService")
 public class PaymentDetailServiceImpl implements PaymentDetailService {
 
     @Autowired
