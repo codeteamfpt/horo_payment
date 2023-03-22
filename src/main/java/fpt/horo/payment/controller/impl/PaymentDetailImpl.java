@@ -24,7 +24,7 @@ public class PaymentDetailImpl implements PaymentDetailApi {
             return new GeneralResponse<>(paymentDetailService.createTrans(request),ResponseStatusEnum.SUCCESS);
         }catch (HandleException he) {
             log.error("PaymentDetailImpl createTrans HandleException : {}", he.getMessage(), he);
-            return new GeneralResponse<>(new CreateTransResponse(),ResponseStatusEnum.BUSSINESS_EXCEPTION);
+            return new GeneralResponse<>(new CreateTransResponse(),he.getStatusCode());
         }catch (Exception e) {
             log.error("PaymentDetailImpl createTrans Exception : {}", e.getMessage(), e);
             return new GeneralResponse<>(new CreateTransResponse(),ResponseStatusEnum.BUSSINESS_EXCEPTION);

@@ -1,6 +1,5 @@
 package fpt.horo.payment.exception;
-
-import fpt.horo.payment.constant.ResponseStatusCode;
+import fpt.horo.payment.dto.ResponseStatus;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -9,7 +8,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 public class HandleException extends RuntimeException{
-    private ResponseStatusCode statusCode;
+    private ResponseStatus statusCode;
     public HandleException(String message) {
         super(message);
     }

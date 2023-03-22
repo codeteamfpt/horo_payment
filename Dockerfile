@@ -1,6 +1,6 @@
 # syntax=docker/dockerfile:1
 FROM adoptopenjdk/openjdk11:alpine-jre
-ARG JAR_FILE=out/artifacts/horo_payment_jar/*.jar
+ARG JAR_FILE=target/template-service-0.0.1-SNAPSHOT.jar
 WORKDIR /app
 COPY .mvn/ .mvn
 COPY mvnw ./

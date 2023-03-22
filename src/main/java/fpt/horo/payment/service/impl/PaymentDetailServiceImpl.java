@@ -1,9 +1,8 @@
 package fpt.horo.payment.service.impl;
 
 import fpt.horo.payment.constant.Constants;
-import fpt.horo.payment.constant.ResponseStatusCode;
-import fpt.horo.payment.constant.ResponseStatusCodeEnum;
-import fpt.horo.payment.constant.ResponseStatusCodeEnum.ResponsePayment;
+import fpt.horo.payment.constant.ResponseStatusEnum;
+import fpt.horo.payment.dto.ResponseStatus;
 import fpt.horo.payment.dto.request.CreateTransRequest;
 import fpt.horo.payment.dto.response.CreateTransResponse;
 import fpt.horo.payment.entity.PaymentTransDetailEntity;
@@ -40,15 +39,15 @@ public class PaymentDetailServiceImpl implements PaymentDetailService {
     public CreateTransResponse createTrans(CreateTransRequest request) throws HandleException {
        CreateTransResponse response = new CreateTransResponse();
         try {
-            throwHandleException(checkRequest(request), ResponsePayment.REQUEST_NULL_OR_EMPTY);
-            throwHandleException(checkDupRequestId(request.getOrderId()), ResponsePayment.REQUEST_DUPLICATE);
+            throwHandleException(checkRequest(request), ResponseStatusEnum.ResponsePayment.REQUEST_NULL_OR_EMPTY);
+            throwHandleException(checkDupRequestId(request.getOrderId()), ResponseStatusEnum.ResponsePayment.REQUEST_DUPLICATE);
             saveTransDetails(request);
         }catch (HandleException he) {
             log.error("PaymentDetailServiceImpl createTrans ex : {}", he.getMessage(), he);
             throw new HandleException(he.getStatusCode());
         }catch (Exception e) {
             log.error("PaymentDetailServiceImpl createTrans ex : {}", e.getMessage(), e);
-            throw new HandleException(ResponseStatusCodeEnum.BUSINESS_ERROR);
+            throw new HandleException(ResponseStatusEnum.BUSSINESS_EXCEPTION);
         }
         return response;
     }
@@ -73,7 +72,7 @@ public class PaymentDetailServiceImpl implements PaymentDetailService {
             paymentTransDetailRepository.save(entity);
         }catch (Exception e){
             log.error("PaymentDetailServiceImpl saveTransDetails ex : {}", e.getMessage(), e);
-            throw new HandleException(ResponsePayment.FAIL_SAVE_DB);
+            throw new HandleException(ResponseStatusEnum.ResponsePayment.FAIL_SAVE_DB);
         }
 
     }
@@ -97,7 +96,7 @@ public class PaymentDetailServiceImpl implements PaymentDetailService {
         }
     }
 
-    private void throwHandleException(boolean isThrow, ResponseStatusCode status) throws HandleException {
+    private void throwHandleException(boolean isThrow, ResponseStatus status) throws HandleException {
         log.info("throwHandleException isThrow : {} reason : {}", isThrow, status);
         if(isThrow) throw new HandleException(status);
     }
