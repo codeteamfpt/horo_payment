@@ -37,11 +37,10 @@ public class PaymentDetailServiceImpl implements PaymentDetailService {
 
     @Override
     public CreateTransResponse createTrans(CreateTransRequest request) throws HandleException {
-       CreateTransResponse response = new CreateTransResponse();
         try {
             throwHandleException(checkRequest(request), ResponseStatusEnum.ResponsePayment.REQUEST_NULL_OR_EMPTY);
             throwHandleException(checkDupRequestId(request.getOrderId()), ResponseStatusEnum.ResponsePayment.REQUEST_DUPLICATE);
-            saveTransDetails(request);
+            return saveTransDetails(request);
         }catch (HandleException he) {
             log.error("PaymentDetailServiceImpl createTrans ex : {}", he.getMessage(), he);
             throw new HandleException(he.getStatusCode());
@@ -49,10 +48,9 @@ public class PaymentDetailServiceImpl implements PaymentDetailService {
             log.error("PaymentDetailServiceImpl createTrans ex : {}", e.getMessage(), e);
             throw new HandleException(ResponseStatusEnum.BUSSINESS_EXCEPTION);
         }
-        return response;
     }
 
-    private void saveTransDetails(CreateTransRequest request){
+    private CreateTransResponse saveTransDetails(CreateTransRequest request){
         String checkSum = Utils.createCheckSum(accessCode,
                 request.getOrderId(),
                 merchantCode,
@@ -70,11 +68,20 @@ public class PaymentDetailServiceImpl implements PaymentDetailService {
                     .checkSum(checkSum)
                     .build();
             paymentTransDetailRepository.save(entity);
+            return CreateTransResponse.builder()
+                    .createDate(entity.getCreateDate())
+                    .transAccountId(entity.getTransAccountId())
+                    .orderId(entity.getOrderId())
+                    .errorMessage("00")
+                    .transMsisdn(entity.getTransMsisdn())
+                    .transType(entity.getTransType())
+                    .transAmount(entity.getTransAmount())
+                    .errorCode("00")
+                    .status(entity.getStatus()).build();
         }catch (Exception e){
             log.error("PaymentDetailServiceImpl saveTransDetails ex : {}", e.getMessage(), e);
             throw new HandleException(ResponseStatusEnum.ResponsePayment.FAIL_SAVE_DB);
         }
-
     }
 
 
